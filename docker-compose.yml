@@ -10,14 +10,20 @@ services:
       - '3001:3001'
     volumes: 
       - my_volume:/var/lib/mysql 
-
+  web:
+    build: .
+    depends_on: 
+      - "db"
+    command: //よく分かっていない
+  db: 
+    image: mysql:5.6
+  
   dockerexpress:
     image: dockerexpress
     build:
       context: .
       dockerfile: ./Dockerfile
-    # environment:
-    #   NODE_ENV: production
+    
     ports:
       - 3000:3000
 volumes:
